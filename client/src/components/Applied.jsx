@@ -8,11 +8,20 @@ height: 80%;
 width: 30%;
 border-radius: 20px;
 `
+const AddButton = styled.button`
+height: 20px;
+width:90%;
+`
+
 
 
 function Applied(props) {
   return (
-  <Wrap>Applied</Wrap>
+  <Wrap>Applied
+
+  <AddButton> + </AddButton>
+
+  </Wrap>
     );
 }
 

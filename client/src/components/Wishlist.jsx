@@ -9,11 +9,17 @@ width: 30%;
 border-radius: 20px;
 
 `
+const AddButton = styled.button`
+height: 20px;
+width:90%;
+`
 
 
 function Wishlist(props) {
   return (
-  <Wrap>Wishlist</Wrap>
+  <Wrap>Wishlist
+    <AddButton> + </AddButton>
+  </Wrap>
     );
 }
 

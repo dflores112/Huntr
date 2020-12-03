@@ -8,6 +8,18 @@ display: flex;
 justify-content: space-between;
 height:80%;
 width:80%;
+font-family: 'Lato', sans-serif;
+font-weight: 400;
+letter-spacing: 0.3px;
+-webkit-font-smoothing: antialiased;
+text-rendering: optimizeLegibility;
+`
+
+const Wrap = styled.div`
+display: flex;
+justify-content: center;
+height: 100%;
+background-color: rgb(250, 249, 255);
 `
 
 class App extends React.Component{
@@ -17,11 +29,13 @@ class App extends React.Component{
 
   render(){
     return(
+      <Wrap>
     <ApplicationWrap>
     <Applied/>
     <Interview/>
     <Wishlist/>
     </ApplicationWrap>
+      </Wrap>
     )
   }
 }

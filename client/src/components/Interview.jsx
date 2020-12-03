@@ -9,11 +9,18 @@ width: 30%;
 border-radius: 20px;
 
 `
+const AddButton = styled.button`
+height: 20px;
+width:90%;
+`
 
 
 function Interview(props) {
   return (
-  <Wrap>Interview</Wrap>
+  <Wrap>Interview
+    <AddButton> + </AddButton>
+  </Wrap>
+
     );
 }
 
