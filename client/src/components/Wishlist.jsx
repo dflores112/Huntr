@@ -13,8 +13,6 @@ const AddButton = styled.button`
 height: 20px;
 width:90%;
 `
-
-
 function Wishlist(props) {
   return (
   <Wrap>Wishlist
