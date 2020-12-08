@@ -53,7 +53,7 @@ class App extends React.Component {
     return (
       <Wrap>
         <ApplicationWrap>
-          <Applied companies={this.state.companies} />
+          <Applied companies={this.state.companies} id="Applied" />
           <Interview />
           <Wishlist />
         </ApplicationWrap>
