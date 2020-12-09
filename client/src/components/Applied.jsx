@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import Modal from 'react-modal';
+
 
 const Wrap = styled.div`
 border-style: solid;
@@ -17,21 +19,54 @@ border:4px solid transparent;
 box-shadow: 0px 0px 7px rgba(25,4,69,0.1);
 `;
 
-function Applied(props) {
-  const appliedCompanies = props.companies.map((company) => (
-    <div>
-      {' '}
-      {company.company}
-    </div>
-  ));
-  return (
-    <Wrap>
-      Applied
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 
-      <AddButton> + </AddButton>
-      {appliedCompanies}
-    </Wrap>
-  );
+
+
+class Applied extends React.Component {
+constructor(props){
+  super(props)
+this.state = {visible: false}
+
+this.showModal = this.showModal.bind(this);
+}
+
+showModal() {
+  this.setState({ visible: true });
+}
+
+hideModal() {
+  this.setState({ visible: false });
+}
+
+
+  render() {
+    const appliedCompanies = this.props.companies.map((company) => (
+      <div>
+        {' '}
+        {company.company}
+      </div>
+    ));
+    return (
+      <Wrap>
+        Applied
+        <Modal isOpen={this.state.visible} style={customStyles}>
+          <div>helllo</div>
+        </Modal>
+        <AddButton onClick={this.showModal}> + </AddButton>
+        {appliedCompanies}
+      </Wrap>
+    );
+  }
 }
 
 export default Applied;
