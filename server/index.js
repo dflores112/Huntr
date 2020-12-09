@@ -19,8 +19,9 @@ app.get('/companies', (req, res) => {
   });
 });
 
-app.post('/add', (req, res) => {
-  dbMethods.saveCompany((err) => {
+app.post('/applied', (req, res) => {
+  const { application } = req.body;
+  dbMethods.saveCompany(application, (err) => {
     if (err) {
       res.send(500);
     } else {

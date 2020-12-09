@@ -28,32 +28,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { companies: [] };
+    this.getCompanies = this.getCompanies.bind(this);
   }
 
   componentDidMount() {
-    this.addCompany();
+    this.getCompanies();
   }
 
   getCompanies() {
     axios.get('/companies')
       .then((res) => {
         this.setState({ companies: res.data });
-      })
-      .catch((error) => console.log(error));
-  }
-
-  addCompany() {
-    axios.post('/add', {
-      company: '',
-    })
-      .catch((res) => console.log(res));
+      });
   }
 
   render() {
     return (
       <Wrap>
         <ApplicationWrap>
-          <Applied companies={this.state.companies} id="Applied" />
+          <Applied companies={this.state.companies} getCompanies={this.getCompanies} />
           <Interview />
           <Wishlist />
         </ApplicationWrap>

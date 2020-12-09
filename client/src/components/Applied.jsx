@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import axios from 'axios';
 
 const Wrap = styled.div`
 border-style: solid;
@@ -43,12 +44,18 @@ class Applied extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false, company: '', date: '', position: '',
+      visible: false, company: '', description: '', position: '', location: '',
     };
 
     this.showModal = this.showModal.bind(this);
     this.hideModal = this.hideModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addCompany = this.addCompany.bind(this);
+  }
+
+  handleChange(event) {
+    const { name } = event.target;
+    this.setState({ [name]: event.target.value });
   }
 
   showModal() {
@@ -59,37 +66,54 @@ class Applied extends React.Component {
     this.setState({ visible: false });
   }
 
-  handleChange(event) {
-    const { name } = event.target;
-    this.setState({ [name]: event.target.value });
+  addCompany() {
+    const {
+      company, description, position, location,
+    } = this.state;
+
+    const application = {
+      company, location, position, description, applied: true, interview: false, wishlist: false,
+    };
+
+    axios.post('/applied', {
+      application,
+    })
+      .then(() => this.props.getCompanies())
+      .then(event.preventDefault);
   }
 
   render() {
     const appliedCompanies = this.props.companies.map((company) => (
       <div>
         {' '}
-        {company.company}
+        {company.name}
       </div>
     ));
 
-    const {company, date, position} = this.state;
+    const {
+      company, description, position, location, visible,
+    } = this.state;
     return (
       <Wrap>
         Applied
-        <Modal isOpen={this.state.visible} style={customStyles}>
-          <button onClick={this.hideModal}>X</button>
-          <FormWrap onSubmit={this.handleSubmit}>
+        <Modal isOpen={visible} style={customStyles}>
+          <button type="submit" onClick={this.hideModal}>X</button>
+          <FormWrap onSubmit={this.addCompany}>
             <label>
               Company Name:
-              <input type="text" name="company" value={company} onChange={this.handleChange} />
+              <input type="text" name="company" value={company} onChange={this.handleChange} required />
             </label>
             <label>
-              Date applied:
-              <input type="text" name="date" value={date} onChange={this.handleChange} />
+              Description:
+              <input type="text" name="description" value={description} onChange={this.handleChange} required />
             </label>
             <label>
               Position:
-              <input type="text" name="position" value={position} onChange={this.handleChange} />
+              <input type="text" name="position" value={position} onChange={this.handleChange} required />
+            </label>
+            <label>
+              Location:
+              <input type="text" name="location" value={location} onChange={this.handleChange} required />
             </label>
             <input type="submit" value="Submit" />
           </FormWrap>

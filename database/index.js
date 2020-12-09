@@ -9,9 +9,9 @@ db.once('open', () => {
 });
 
 const HuntrSchema = new mongoose.Schema({
-  company: String,
-  logo: String,
+  name: String,
   location: String,
+  position: String,
   description: String,
   wishlist: Boolean,
   applied: Boolean,
@@ -22,10 +22,9 @@ const Company = mongoose.model('Company', HuntrSchema);
 
 const saveCompany = (company) => {
   const application = new Company({
-    name: company.name,
-    logo: company.logo,
+    name: company.company,
     location: company.location,
-    title: company.title,
+    position: company.position,
     description: company.description,
     wishlist: company.wishlist,
     applied: company.applied,
