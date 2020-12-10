@@ -4,10 +4,10 @@ import Modal from 'react-modal';
 import axios from 'axios';
 
 const Wrap = styled.div`
-border-style: solid;
-border-color: red;
+// border-style: solid;
+// border-color: red;
 height: 80%;
-width: 30%;
+width: 300px;
 border-radius: 20px;
 `;
 const AddButton = styled.button`
@@ -26,6 +26,17 @@ display:grid;
 grid-template-columns: 100%;
 grid-template-rows: 100%;
 `;
+
+const ApplicationTiles = styled.div`
+width: 271px;
+color: white;
+height: 96px;
+background-color: rgba(84, 148, 244, 0.85);
+border-radius: 5%;
+padding: 2px 2px 2px 7px;
+border: 4px solid transparent;
+margin: 5px;
+`
 
 const customStyles = {
   content: {
@@ -84,10 +95,10 @@ class Applied extends React.Component {
 
   render() {
     const appliedCompanies = this.props.companies.map((company) => (
-      <div>
+      <ApplicationTiles>
         {' '}
         {company.name}
-      </div>
+      </ApplicationTiles>
     ));
 
     const {
