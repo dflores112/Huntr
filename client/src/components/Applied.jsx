@@ -28,6 +28,9 @@ grid-template-rows: 100%;
 `;
 
 const ApplicationTiles = styled.div`
+display:grid;
+grid-template-columns: 100%;
+grid-template-rows: 100%;
 width: 271px;
 color: white;
 height: 96px;
@@ -36,7 +39,7 @@ border-radius: 5%;
 padding: 2px 2px 2px 7px;
 border: 4px solid transparent;
 margin: 5px;
-`
+`;
 
 const customStyles = {
   content: {
@@ -96,8 +99,9 @@ class Applied extends React.Component {
   render() {
     const appliedCompanies = this.props.companies.map((company) => (
       <ApplicationTiles>
-        {' '}
         {company.name}
+        {company.location}
+        {company.position}
       </ApplicationTiles>
     ));
 
